@@ -26,3 +26,7 @@ export const updatePet = async (
 export const deletePet = async (id: SelectPets["id"]) => {
   return await db.delete(petsTable).where(eq(petsTable.id, id));
 };
+
+export const getPetsByType = async (type : SelectPets['type']) => {
+  return await db.select().from(petsTable).where(eq(petsTable.type, type))
+}
