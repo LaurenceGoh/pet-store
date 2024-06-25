@@ -8,10 +8,10 @@ type Props = {
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
-  const accessory = params.pet;
+  const pet = params.pet;
   return {
-    title: accessory.charAt(0).toUpperCase() + accessory.slice(1),
-    description: `Accessory Details for ${accessory}`,
+    title: pet.charAt(0).toUpperCase() + pet.slice(1),
+    description: `Available ${pet}`,
   };
 };
 

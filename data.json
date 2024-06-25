@@ -1,0 +1,46 @@
+{
+  "pets": [
+    {
+      "name": "Fluffy",
+      "type": "cats",
+      "age": 3,
+      "breed": "Persian"
+    },
+    {
+      "name": "Buddy",
+      "type": "dogs",
+      "age": 5,
+      "breed": "Golden Retriever"
+    },
+    {
+      "name": "Mittens",
+      "type": "cats",
+      "age": 2,
+      "breed": "Siamese"
+    },
+    {
+      "name": "Max",
+      "type": "dogs",
+      "age": 4,
+      "breed": "Labrador"
+    },
+    {
+      "name": "Charlie",
+      "type": "dogs",
+      "age": 2,
+      "breed": "Poodle"
+    },
+    {
+      "name": "Whiskers",
+      "type": "cats",
+      "age": 1,
+      "breed": "Maine Coon"
+    },
+    {
+      "name": "Rocky",
+      "type": "dogs",
+      "age": 6,
+      "breed": "German Shepherd"
+    }
+  ]
+}
