@@ -1,5 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import { SelectAccessories } from '@/db/schema'
+import AccessoryCard from '@/components/AccessoryCard'
 
 type Props = {
   params : {accessory: string}
@@ -15,11 +17,23 @@ export const generateMetadata = async ( {params} : Props,
     }
 }
 
-const page = ( { params }: Props) => {
+const page = async ({ params }: Props) => {
+  const accessories : any  = await fetch(
+    `http://localhost:3000/api/accessories/${params.accessory}`, {
+      next : {
+        revalidate : 0
+      }
+    }
+  ).then((res) => res.json());
+
   return (
-    <div>
-     Clicked on {params.accessory}
+    <main className="flex flex-col justify-between items-center">
+    <div className="grid grid-cols-4 gap-4">
+      {accessories.map((accessory: SelectAccessories) => (
+        <AccessoryCard accessory={accessory} key={accessory.id} />
+      ))}
     </div>
+  </main>
   )
 }
 

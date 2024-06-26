@@ -1,0 +1,20 @@
+{
+    "accessories": [
+        {
+            "name": "Dog Food",
+            "type": "pet food"
+        },
+        {
+            "name": "Cat Litter",
+            "type": "home"
+        },
+        {
+            "name": "Dog Collar",
+            "type": "home"
+        },
+        {
+            "name": "Cat Toy",
+            "type": "home"
+        }
+    ]
+}

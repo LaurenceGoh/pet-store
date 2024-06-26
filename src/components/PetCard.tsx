@@ -7,18 +7,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-type CardProps = React.ComponentProps<typeof Card>;
 import { cn } from "@/lib/utils";
+import { SelectPets } from "@/db/schema";
 
-const StoreCard = ({ className, ...props }: CardProps) => {
+type CardProps = React.ComponentProps<typeof Card>;
+
+const PetCard = ({ className, pet, ...props  }: CardProps & {pet : SelectPets }) => {
   return (
     <Card className={cn("w-[380px]", className)} {...props}>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        <CardTitle>{pet.name}</CardTitle>
+        <CardDescription>Age : {pet.age}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <p>Breed : {pet.breed}</p>
       </CardContent>
       <CardFooter>
         <p>Card Footer</p>
@@ -27,4 +29,4 @@ const StoreCard = ({ className, ...props }: CardProps) => {
   );
 };
 
-export default StoreCard;
+export default PetCard;
