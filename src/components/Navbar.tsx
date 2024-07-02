@@ -135,7 +135,34 @@ const Navbar = () => {
             </NavigationMenuContent>
           </NavigationMenuItem>
 
-          {!isAuthenticated ? (
+          {isAuthenticated ? (
+            getPermission("admin-permissions")?.isGranted ? (
+              <>
+                <NavigationMenuItem>
+                  <Link href="/admin" passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Admin Portal
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <LogoutLink className={navigationMenuTriggerStyle()}>
+                    Logout
+                  </LogoutLink>
+                </NavigationMenuItem>
+              </>
+            ) : (
+              <>
+                <NavigationMenuItem>
+                  <LogoutLink className={navigationMenuTriggerStyle()}>
+                    Logout
+                  </LogoutLink>
+                </NavigationMenuItem>
+              </>
+            )
+          ) : (
             <>
               <NavigationMenuItem>
                 <LoginLink
@@ -155,31 +182,8 @@ const Navbar = () => {
                 </RegisterLink>
               </NavigationMenuItem>
             </>
-          ) : getPermission("admin-permissions")?.isGranted ? (
-            <>
-              <NavigationMenuItem>
-                <Link href="/admin" passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Admin Portal
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <LogoutLink className={navigationMenuTriggerStyle()}>
-                  Logout
-                </LogoutLink>
-              </NavigationMenuItem>
-            </>
-          ) : (
-            <>
-              <NavigationMenuItem>
-                <LogoutLink className={navigationMenuTriggerStyle()}>
-                  Logout
-                </LogoutLink>
-              </NavigationMenuItem>
-            </>
           )}
-
+         
           <NavigationMenuItem>
             <ModeToggle />
           </NavigationMenuItem>

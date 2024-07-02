@@ -111,7 +111,6 @@ accessory.get("/:type", async (c) => {
     const accessoryType = c.req.param("type");
     const accessories = await getAccessoriesByType(accessoryType);
 
-    console.log(accessories);
     return c.json(accessories, 200);
   } catch (err) {
     return c.json({ message: err }, 500);
