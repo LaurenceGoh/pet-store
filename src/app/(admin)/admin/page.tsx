@@ -27,7 +27,7 @@ const page = async () => {
   return (
     <main className="flex flex-col items-center justify-between p-12">
 
-      <Tabs defaultValue="pets" className="w-full" >
+      <Tabs defaultValue="pets" className="w-4/5" >
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="pets">Pets</TabsTrigger>
           <TabsTrigger value="accessories">Accessories</TabsTrigger>

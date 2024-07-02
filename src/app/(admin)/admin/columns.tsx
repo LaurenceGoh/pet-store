@@ -1,8 +1,8 @@
 "use client";
 
-import { ColumnDef, Row } from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 import { SelectPets, SelectAccessories } from "@/db/schema";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -31,7 +31,20 @@ export const petsColumns: ColumnDef<SelectPets>[] = [
   },
   {
     accessorKey: "id",
-    header: "ID",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          ID
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell : ({row}) => {
+      return <div className="ml-4">{row.getValue('id')}</div>
+    }
   },
   {
     accessorKey: "name",
@@ -54,10 +67,23 @@ export const petsColumns: ColumnDef<SelectPets>[] = [
         </Button>
       );
     },
+    cell : ({row}) => {
+      return <div className="ml-6">{row.getValue('age')}</div>
+    }
   },
   {
     accessorKey: "breed",
-    header: "Breed",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Breed
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "created_at",
