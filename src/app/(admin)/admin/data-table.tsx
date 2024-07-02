@@ -7,6 +7,8 @@ import {
   useReactTable,
   ColumnFiltersState,
   getFilteredRowModel,
+  SortingState,
+  getSortedRowModel,
 
 } from "@tanstack/react-table";
 
@@ -18,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useState } from "react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -28,11 +31,23 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [rowSelection, setRowSelection] = useState({})
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    onSortingChange : setSorting,
+    getSortedRowModel : getSortedRowModel(),
+    onRowSelectionChange: setRowSelection,
+
+    state : {
+      sorting,
+      rowSelection
+    },
   });
+
 
   return (
     <div className="rounded-md border">
