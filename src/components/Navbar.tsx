@@ -4,6 +4,7 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
+  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
@@ -20,7 +21,7 @@ import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { PawPrint, Shirt, Dog, Cat, Bone, Home } from "lucide-react";
 
 const Navbar = () => {
-  const { isAuthenticated } = useKindeBrowserClient();
+  const { isAuthenticated, isLoading, getPermission } = useKindeBrowserClient();
   return (
     <main className="flex flex-col items-center p-12">
       <NavigationMenu>
@@ -85,7 +86,7 @@ const Navbar = () => {
 
           <NavigationMenuItem>
             <NavigationMenuTrigger>
-              <Shirt className="mr-2"/>
+              <Shirt className="mr-2" />
               <p>Pet Utilities</p>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -154,12 +155,29 @@ const Navbar = () => {
                 </RegisterLink>
               </NavigationMenuItem>
             </>
+          ) : getPermission("admin-permissions")?.isGranted ? (
+            <>
+              <NavigationMenuItem>
+                <Link href="/admin" passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Admin Portal
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <LogoutLink className={navigationMenuTriggerStyle()}>
+                  Logout
+                </LogoutLink>
+              </NavigationMenuItem>
+            </>
           ) : (
-            <NavigationMenuItem>
-              <LogoutLink className={navigationMenuTriggerStyle()}>
-                Logout
-              </LogoutLink>
-            </NavigationMenuItem>
+            <>
+              <NavigationMenuItem>
+                <LogoutLink className={navigationMenuTriggerStyle()}>
+                  Logout
+                </LogoutLink>
+              </NavigationMenuItem>
+            </>
           )}
 
           <NavigationMenuItem>

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import './globals.css'
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
+import { Suspense } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,8 +25,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Suspense fallback={<div>Loading...</div>}>
+
           <Navbar/>
           {children}
+          </Suspense>
+         
         </ThemeProvider>
       </body>
     </html>
