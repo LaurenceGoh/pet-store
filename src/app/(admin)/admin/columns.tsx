@@ -191,4 +191,33 @@ export const accessoriesColumns: ColumnDef<SelectAccessories>[] = [
       return <div>{formatted}</div>;
     },
   },
+  {
+    id: "actions",
+    enableHiding: false,
+    cell: ({ row }) => {
+      const accessory = row.original
+    
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText((accessory.id.toString()))}
+            >
+              Copy Accessory ID
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Update Accessory Details</DropdownMenuItem>
+            <DropdownMenuItem>Delete Accessory</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )
+    },
+  },
 ];

@@ -1,4 +1,4 @@
-import React from "react";
+
 import type { Metadata } from "next";
 import { petsColumns, accessoriesColumns } from "./columns";
 import { DataTable } from "./data-table";
